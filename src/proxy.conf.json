@@ -1,0 +1,7 @@
+{
+    "/api/v1/rest-auth/login/": {
+        "target": "http://angular-backend-sayone.herokuapp.com/api/v1/rest-auth/login/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

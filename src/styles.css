@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+.form-err-msg {
+    list-style-type: none;
+    color: red;
+    font-style: italic;
+    font-size: 0.8rem;
+    padding-left: 1%;
+}

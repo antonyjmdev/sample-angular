@@ -1,0 +1,41 @@
+<div class="mx-auto col-4 offset-4" style="margin-top:10%">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-row py-1">
+            <input type="email" name="email" formControlName="email" placeholder="email" class="form-control">
+            <ul class="form-err-msg" *ngIf="f.email.errors && submitted==true">
+                <li *ngIf="f.email.errors.required">
+                    Email is required
+                </li>
+            </ul>
+            <ul class="form-err-msg" *ngIf="error && error['email'] && submitted==true">
+                <li *ngFor="let err of error['email']">
+                    {{ err }}
+                </li>
+            </ul>
+        </div>
+        <div class="form-row py-1">
+            <input type="password" formControlName="password" name="password" placeholder="password" class="form-control">
+            <ul class="form-err-msg" *ngIf="f.password.errors && submitted==true">
+                <li *ngIf="f.password.errors.required">
+                    Password is required
+                </li>
+            </ul>
+            <ul class="form-err-msg" *ngIf="error && error['non_field_errors'] && submitted==true">
+                <li *ngFor="let err of error['non_field_errors']">
+                    {{ err }}
+                </li>
+            </ul>
+        </div>
+        <div class="form-row py-1">
+            <div class="col-5">
+                <input type="submit" class="btn btn-block btn-primary mx-auto" value="Login">
+            </div>
+            <div class="col d-flex align-items-center">
+                <div class="flex-fill" style="text-align: center;">
+                    <a href="#"><small>Forgot Password?</small></a>
+                </div>
+            </div>
+            <!-- <a href="#" class="btn btn-primary mx-auto">Submit</a> -->
+        </div>
+    </form>
+</div>

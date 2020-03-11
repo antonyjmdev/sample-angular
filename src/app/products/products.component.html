@@ -1,0 +1,42 @@
+<form class="form-inline justify-content-center" [formGroup]="productsForm" (ngSubmit)="getProducts()">
+    <input class="form-control mx-1" type="text" formControlName="search" name="search" placeholder="search">
+
+    <label for="rating">Rating : </label>
+    <select class="form-control mx-1" formControlName="rating" name="rating">
+        <option *ngFor="let value of ratingsValues" value="{{ value }}">{{ value }}</option>
+    </select>
+    <input class="mx-1 btn btn-primary" type="submit" value="Filter">
+
+</form>
+<div class="col-3 offset-5" *ngIf="loading">
+
+    <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+</div>
+<div class="row mt-3">
+    <div class="card-columns">
+        <div *ngFor="let product of productsList" class="card mx-2 px-0">
+            <img *ngIf="product.image" class="card-img-top img-fluid" style="max-width: 100%; height: auto;" src="{{ product.image }}" alt="Card image cap">
+            <img *ngIf="!product.image" class="card-img-top img-fluid" style="max-width: 100%; height: auto;" src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/ke17ZwdGBToddI8pDm48kKVo6eXXpUnmuNsFtLxYNDVZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7abfyk2s94xLLkDA7TSo2rckMlGDU48FfF-V7lLcSuGNU_Uf7d6wOiJwP-LWX64gbQ/image-asset.gif" alt="Card image cap">
+            <div class="card-header">
+                <h5 class="card-title"><a routerLink="/product/{{product.id}}">{{ product.name }}</a></h5>
+            </div>
+            <div class="card-body p-1">
+                <p style="font-size: 0.85rem;">{{ product.description }}</p>
+                
+            </div>
+            <div class="card-footer">
+                <small class="card-test">Rated <b>{{ product.rating }}</b></small>
+
+            </div>
+        </div>
+    </div>
+
+</div>

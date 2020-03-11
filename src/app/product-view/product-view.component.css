@@ -1,0 +1,7 @@
+#shopping-cart:hover {
+    border-color: green;
+}
+
+#shopping-cart-remove:hover {
+    border-color: red;
+}

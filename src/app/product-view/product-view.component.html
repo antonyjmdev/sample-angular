@@ -1,0 +1,74 @@
+<!-- Modal -->
+<div *ngIf="product" class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete product?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you wish to delete this product?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-success" (click)="deleteProduct()">Yes</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div *ngIf="product" class="row">
+    <div class="col-3 offset-2 d-flex align-items-center">
+        <div class="mx-auto">
+          <img *ngIf="product && product.image" src="{{ product.image}}" class="img-fluid" style="max-width: 100%; height: auto;">
+          <img *ngIf="product && !product.image" src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/ke17ZwdGBToddI8pDm48kKVo6eXXpUnmuNsFtLxYNDVZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7abfyk2s94xLLkDA7TSo2rckMlGDU48FfF-V7lLcSuGNU_Uf7d6wOiJwP-LWX64gbQ/image-asset.gif" class="img-fluid" style="max-width: 100%; height: auto;">
+        </div>
+    </div>
+    <div class="col-5">
+         <table class="table table-bordered">
+             <tr>
+                 <td>Name</td>
+                 <td>{{ product.name }}</td>
+             </tr>
+             <tr>
+                <td>Description</td>
+                <td>{{ product.description }}</td>
+            </tr>
+            <tr>
+                <td>Rating</td>
+                <td>{{ product.rating }}</td>
+            </tr>
+            <tr *ngIf="loggedIn">
+
+                <td colspan="2">
+                  <div class="row">
+                    <div class="col-4">
+                      <button *ngIf="!addedToCart" id="shopping-cart" class="btn" title="Add to cart" (click)="addToCart()"><i class="fa fa-shopping-cart fa-2x" style="color: green;"></i></button>
+                    <button *ngIf="addedToCart" id="shopping-cart-remove" class="btn" title="Remove from cart" (click)="removeFromCart()"><i class="fa fa-times-circle fa-2x" style="color: red;"></i></button>
+                    </div>
+                    <div class="col-4">
+                      <a *ngIf="product" class="btn" title="Edit Product" routerLink="/product/{{product.id}}/edit"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-4">
+                      <button title="Delete product" *ngIf="product" type="button" class="mx-auto btn" data-toggle="modal" data-target="#deleteModal" ><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                    
+                
+                    
+                
+                    
+
+                </td>
+                
+            </tr>
+            <tr *ngIf="!loggedIn">
+              <td colspan="2">
+                <span>Login to add to cart</span>
+              </td>
+            </tr>
+         </table>
+    </div>
+</div>

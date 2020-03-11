@@ -1,0 +1,72 @@
+<div *ngIf="dataReturn">
+    <div *ngIf="!editSuccess" class="alert alert-danger" role="alert">
+        Edit was unsuccesfull
+    </div>
+    <div *ngIf="editSuccess" class="alert alert-success" role="alert">
+        Edit was succesfull
+    </div>
+</div>
+<div class="row">
+
+<div class="col-4">
+    <img class="img-fluid" style="width:100%;height:auto;" *ngIf="product.image" src="{{ product.image }}">
+    <p *ngIf="!product.image">Not image</p>
+</div>
+<div class="col-8">
+<form [formGroup]="productEditForm" (ngSubmit)="onSubmit()">
+    <table class="table table-borderless">
+        <tr>
+            <td><label for="name">Name</label></td>
+            <td>
+                <input class="form-control" type="text" name="name" formControlName="name">
+                <!-- <ul class="form-err-msg" *ngIf="error_messages && error_messages['name'] && submitted">
+                    <li *ngFor="let err of error_messages['name']">{{ err }}</li>
+                </ul> -->
+                <ul class="form-err-msg" *ngIf="submitted && f.name.errors">
+                    <li *ngIf="f.name.errors.required">Name is required</li>
+                </ul>
+            </td>
+
+        </tr>
+        <tr>
+            <td><label for="first_name">Description</label></td>
+            <td><input class="form-control" type="text" name="description" formControlName="description">
+                <!-- <ul class="form-err-msg" *ngIf="error_messages && error_messages['first_name'] && submitted">
+                    <li *ngFor="let err of error_messages['first_name']">{{ err }}</li>
+                </ul> -->
+            </td>
+
+        </tr>
+        <tr>
+            <td><label for="image">Image</label></td>
+            <td><input class="form-control" type="file" name="image" (change)="setFile($event.target.files)">
+                <!-- <ul class="form-err-msg" *ngIf="error_messages && error_messages['last_name'] && submitted">
+                    <li *ngFor="let err of error_messages['last_name']">{{ err }}</li>
+                </ul> -->
+            </td>
+
+        </tr>
+        <tr>
+            <td><label for="rating">Rating</label></td>
+            <td>
+                <select class="form-control" name="rating" formControlName="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <!-- <ul class="form-err-msg" *ngIf="error_messages && error_messages['password1'] && submitted">
+                    <li *ngFor="let err of error_messages['password1']">{{ err }}</li>
+                </ul> -->
+            </td>
+
+        </tr>
+        
+        <tr>
+            <input type="submit" class="btn btn-primary" value="Edit">
+        </tr>
+    </table>            
+</form>
+</div>
+</div>

@@ -1,0 +1,61 @@
+<div *ngIf="dataReturn">
+    <div *ngIf="!orderSuccess" class="alert alert-danger" role="alert">
+        Order creation unsuccessful
+    </div>
+    <div *ngIf="orderSuccess" class="alert alert-success" role="alert">
+        Order has been created
+    </div>
+</div>
+<div class="col-10 mx-auto" *ngIf="productsPresent">
+    <div class="row border rounded p-0 m-2" *ngFor="let product of products">
+        <div class="col-2">
+            <img *ngIf="product.image" src="{{ product.image}}" class="img-fluid" style="max-width: 100%; height: auto;">
+            <img *ngIf="!product.image" src="https://images.squarespace-cdn.com/content/v1/55fc0004e4b069a519961e2d/1442590746571-RPGKIXWGOO671REUNMCB/ke17ZwdGBToddI8pDm48kKVo6eXXpUnmuNsFtLxYNDVZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7abfyk2s94xLLkDA7TSo2rckMlGDU48FfF-V7lLcSuGNU_Uf7d6wOiJwP-LWX64gbQ/image-asset.gif" class="img-fluid" style="max-width: 100%; height: auto;">
+        </div>
+        <div class="col-8">
+            <div class="row border-bottom">
+                <h3>{{ product.name }}</h3>
+            </div>
+            <div class="row mt-1">
+                <p class="p-1"><b>Description : </b>{{ product.description }}</p>
+            </div>
+            <div class="row">
+                <small class="p-1">
+                    <i *ngIf="product.rating">This product has a rating of {{ product.rating }}</i>
+                    <i *ngIf="!product.rating">This product has not been rated</i>
+                </small>
+            </div>
+            <!-- <table class="table table-sm">
+                <tr>
+                    <td>Name</td>
+                    <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>{{ product.description }}</td>
+                </tr>
+                <tr>
+                    <td>Rating</td>
+                    <td>
+                        <small>
+                            <i *ngIf="product.rating">This product has a rating of {{ product.rating }}</i>
+                            <i *ngIf="!product.rating">This product has not been rated</i>
+                        </small>
+                    </td>
+                </tr>
+            </table> -->
+
+        </div>
+        <div class="col-2 d-flex align-items-center" >
+                <button id="rm-cart-button" title="Remove from cart" class="btn mx-auto" (click)="cartService.removeFromCart(product)"><i class="fa fa-trash fa-3x" style="color: red;"></i></button>
+            
+        </div>
+    </div>
+
+    <div class="p-2">
+        <button class="btn btn-primary" (click)="createOrder()">Checkout</button>
+    </div>
+</div>
+<div class="col-10 mx-auto my-5" *ngIf="!productsPresent">
+        <h4 style="text-align: center;">No items in cart</h4>
+</div>

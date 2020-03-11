@@ -1,0 +1,115 @@
+<div class="col-6 offset-3">
+    <div id="form-message">
+        <div *ngIf="submitted">
+            <div *ngIf="dataReturn && !regSuccess" class="alert alert-danger" role="alert">
+                Account creation was unsuccessfull
+            </div>
+            <div *ngIf="dataReturn && regSuccess" class="alert alert-success" role="alert">
+                Account creation was successfull
+            </div>
+        </div>
+    </div>
+
+
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <table class="table table-borderless">
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td>
+                    <input class="form-control" type="text" name="email" formControlName="email">
+                    <ul class="form-err-msg" *ngIf="error_messages && error_messages['email'] && submitted">
+                        <li *ngFor="let err of error_messages['email']">{{ err }}</li>
+                    </ul>
+                    <ul class="form-err-msg" *ngIf="submitted && f.email.errors">
+                        <li *ngIf="f.email.errors.required">email is required</li>
+                    </ul>
+                </td>
+
+            </tr>
+            <tr>
+                <td><label for="first_name">First Name</label></td>
+                <td><input class="form-control" type="text" name="first_name" formControlName="first_name">
+                    <ul class="form-err-msg" *ngIf="error_messages && error_messages['first_name'] && submitted">
+                        <li *ngFor="let err of error_messages['first_name']">{{ err }}</li>
+                    </ul>
+                    <ul class="form-err-msg" *ngIf="f.first_name.errors && submitted">
+                        <li *ngIf="f.first_name.errors.required">First name is required</li>
+                    </ul></td>
+
+            </tr>
+            <tr>
+                <td><label for="last_name">Last Name</label></td>
+                <td><input class="form-control" type="text" name="last_name" formControlName="last_name">
+                    <ul class="form-err-msg" *ngIf="error_messages && error_messages['last_name'] && submitted">
+                        <li *ngFor="let err of error_messages['last_name']">{{ err }}</li>
+                    </ul>
+                    <ul class="form-err-msg" *ngIf="f.last_name.errors && submitted">
+                        <li *ngIf="f.last_name.errors.required">Last name is required</li>
+                    </ul></td>
+
+            </tr>
+            <tr>
+                <td><label for="password1">Password</label></td>
+                <td><input class="form-control" type="password" name="password1" formControlName="password1">
+                    <ul class="form-err-msg" *ngIf="error_messages && error_messages['password1'] && submitted">
+                        <li *ngFor="let err of error_messages['password1']">{{ err }}</li>
+                    </ul>
+                    <ul class="form-err-msg" *ngIf="f.password1.errors && submitted">
+                        <li *ngIf="f.password1.errors.required">Password is required</li>
+                    </ul></td>
+
+            </tr>
+            <tr>
+                <td><label for="password2">Confirm Password</label></td>
+                <td><input class="form-control" type="password" name="password2" formControlName="password2">
+                    <ul class="form-err-msg" *ngIf="error_messages && error_messages['password2'] && submitted">
+                        <li *ngFor="let err of error_messages['password2']">{{ err }}</li>
+                    </ul>
+                    <ul class="form-err-msg" *ngIf="f.password2.errors && submitted">
+                        <li *ngIf="f.password2.errors.required">Confirm password is required</li>
+                    </ul></td>
+
+            </tr>
+            <tr>
+                <td><label for="mobile">Mobile No</label></td>
+                <td><input class="form-control" type="text" name="mobile" formControlName="mobile">
+                    <ul class="form-err-msg" *ngIf="error_messages && error_messages['mobile'] && submitted">
+                        <li *ngFor="let err of error_messages['mobile']">{{ err }}</li>
+                    </ul></td>
+
+            </tr>
+            <tr>
+                <td><label for="gender">Gender</label></td>
+                <td>
+                    <select class="form-control" name="gender" formControlName="gender">
+                        <option *ngFor="let gender of genders" value="{{ gender }}">{{ gender }}</option>
+                    </select>
+                    
+                    <ul class="form-err-msg" *ngIf="error_messages && error_messages['gender'] && submitted">
+                        <li *ngFor="let err of error_messages['gender']">{{ err }}</li>
+                    </ul>
+                </td>
+
+            </tr>
+            <tr>
+                <td><label for="user_type">User Type</label></td>
+                <td><input class="form-control" type="text" name="user_type" formControlName="user_type">
+                    <ul class="form-err-msg" *ngIf="error_messages && (error_messages['user_type']) && submitted">
+                        <li *ngFor="let err of error_messages['user_type']">{{ err }}</li>
+                    </ul>
+
+            </tr>
+            <tr>
+                <input type="submit" class="btn btn-primary" value="Register">
+            </tr>
+        </table>        
+
+
+            
+            
+        </form>
+
+
+
+
+</div>

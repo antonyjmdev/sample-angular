@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-6 offset-3">
+        <div *ngIf="submitted">
+            <div *ngIf="!editSuccess" class="alert alert-danger" role="alert">
+                Edit was unsuccesfull
+            </div>
+            <div *ngIf="editSuccess" class="alert alert-success" role="alert">
+                Edit was succesfull
+            </div>
+        </div>
+        <form *ngIf="profileEditForm" [formGroup]="profileEditForm" (ngSubmit)="onSubmit()">
+            <table class="table table-borderless">
+                <tr>
+                    <td><label for="firstName">First Name</label></td>
+                    <td>
+                        <input class="form-control" type="text" name="firstName" formControlName="firstName">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td><label for="lastName">Last Name</label></td>
+                    <td><input class="form-control" type="text" name="lastName" formControlName="lastName">
+                    </td>
+
+                </tr>
+                
+                <tr>
+                    <td>    
+                        <input type="submit" class="btn btn-primary" value="Save">
+                    </td>
+                    
+                </tr>
+            </table>            
+        </form>
+
+    </div>
+</div>
